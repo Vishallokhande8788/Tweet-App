@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib.auth.decorators import login_required
 from .models import Tweet
 from .forms import TweetForm
 
@@ -14,6 +15,7 @@ def tweet_list(request):
 
 
 # Create Tweet
+@login_required
 def tweet_create(request):
     if request.method == 'POST':
         form = TweetForm(request.POST, request.FILES)
@@ -28,6 +30,7 @@ def tweet_create(request):
 
 
 # Edit Tweet
+@login_required
 def tweet_edit(request, tweet_id):
     tweet = get_object_or_404(Tweet, id=tweet_id, user=request.user)
     if request.method == 'POST':
@@ -39,8 +42,9 @@ def tweet_edit(request, tweet_id):
         form = TweetForm(instance=tweet)
     return render(request, 'tweet_form.html', {'form': form})
 
-
+ 
 # Delete Tweet
+@login_required
 def tweet_delete(request, tweet_id):
     tweet = get_object_or_404(Tweet, id=tweet_id, user=request.user)
     if request.method == 'POST':
