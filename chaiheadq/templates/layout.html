@@ -55,6 +55,8 @@
         {% csrf_token %}
         <button class="btn btn-outline-danger" type="submit">Logout</button>
       {% else %}
+      <a href="{% url 'register' %}" class="btn btn-outline-primary mx-2">Register</a>
+      <a href="{% url 'login' %}" class="btn btn-outline-success mx-2">Login</a>
       {% endif %}
     </div>
   </div>
