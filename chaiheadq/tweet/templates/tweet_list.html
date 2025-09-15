@@ -1,29 +1,79 @@
 {% extends "layout.html" %}
 
 {% block title %}
-    Chai or Tweet
+    Tweet App
 {% endblock %}
 
 {% block content %}
-    <h1 class="text-center mt-4">
-        Welcome to Chai Django project
-    </h1>
-    <a class="btn btn-primary mb-4" href="{% url 'tweet_create' %}">Create Tweet</a>
-    <div class="container row gap-3">
-         {% for tweet in tweets  %}
-        <div class="card" style="width: 18rem;">
-  <img src="{{tweet.photo.url}}" class="card-img-top" alt="...">
-  <div class="card-body">
-    <h5 class="card-title">{{tweet.user.username}}</h5>
-    <p class="card-text">{{tweet.text}}</p>
-    {% if tweet.user == user %}
+<div class="container mt-4">
+    <h1 class="text-center mb-4 fw-bold">Explore the Latest Tweets in Your Network 🐦</h1>
 
-    <a href="{% url 'tweet_edit' tweet.id %}" class="btn btn-primary">Edit</a>
-    <a href="{% url 'tweet_delete' tweet.id %}" class="btn btn-danger">Delete</a>
-    {% endif %}
-  </div>
-</div>
-        {% endfor %}
-
+    <div class="text-center mb-4">
+        <a class="btn btn-primary btn-lg rounded-pill shadow-sm" href="{% url 'tweet_create' %}">
+            ➕ Create a Tweet
+        </a>
     </div>
+
+    {% if tweets %}
+    <div class="row g-4 justify-content-center">
+        {% for tweet in tweets %}
+        <div class="col-md-5 col-lg-4">
+            <div class="card shadow-lg rounded-4 border-0 h-100">
+                {% if tweet.photo %}
+                    <img src="{{ tweet.photo.url }}" class="card-img-top rounded-top" alt="Tweet Image">
+                {% endif %}
+                <div class="card-body">
+                    <div class="d-flex align-items-center mb-2">
+                        <div class="bg-primary text-white rounded-circle d-flex align-items-center justify-content-center"
+                             style="width: 40px; height: 40px; font-weight: 600;">
+                            {{ tweet.user.username|first|upper }}
+                        </div>
+                        <div class="ms-2">
+                            <h6 class="mb-0 fw-bold">{{ tweet.user.username }}</h6>
+                            <small class="text-muted">{{ tweet.created_at|date:"M d, Y H:i" }}</small>
+                        </div>
+                    </div>
+                    <p class="card-text mt-2">{{ tweet.text }}</p>
+
+                    {% if tweet.user == user %}
+                        <div class="d-flex gap-2 mt-3">
+                            <a href="{% url 'tweet_edit' tweet.id %}" class="btn btn-outline-warning btn-sm rounded-pill">
+                                ✏️ Edit
+                            </a>
+                            <a href="{% url 'tweet_delete' tweet.id %}" class="btn btn-outline-danger btn-sm rounded-pill">
+                                🗑 Delete
+                            </a>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+    {% else %}
+        <div class="text-center mt-5">
+            <h4 class="text-muted">No tweets yet! Be the first to post. 🚀</h4>
+        </div>
+    {% endif %}
+</div>
+
+<style>
+    h1 {
+        font-family: "Inter", sans-serif;
+    }
+    .card {
+        background-color: #1e1e1e;
+        transition: transform 0.2s ease-in-out;
+    }
+    .card:hover {
+        transform: translateY(-3px);
+    }
+    .card-body {
+        animation: fadeIn 0.4s ease-in-out;
+    }
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(8px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+</style>
 {% endblock %}

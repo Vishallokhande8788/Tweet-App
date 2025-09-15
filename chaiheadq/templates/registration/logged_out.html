@@ -1,5 +1,38 @@
 {% extends 'layout.html' %}
 {% block content %}
-<h2>Logged out  </h2>
-<p> You have been logged out. <a href="{% url 'login' %}">Login here</a></p>
+
+<div class="row justify-content-center">
+  <div class="col-md-6 col-lg-5">
+    <div class="card shadow-lg rounded-4 text-center">
+      <div class="card-body p-4">
+        <h2 class="fw-bold mb-3">You are Logged Out</h2>
+        <p class="mb-4 text-muted">
+          You have successfully logged out of your account.
+        </p>
+
+        <a href="{% url 'login' %}" class="btn btn-success rounded-pill shadow-sm px-4">
+          Login Again
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  h2 {
+    font-family: "Inter", sans-serif;
+  }
+  .card {
+    background-color: #1e1e1e;
+    border: 1px solid rgba(255,255,255,0.1);
+  }
+  .card-body {
+    animation: fadeIn 0.5s ease-in-out;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
+
 {% endblock %}
