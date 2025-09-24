@@ -54,6 +54,8 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = "chaiheadq.urls"
+ALLOWED_HOSTS = ['.onrender.com', 'localhost']
+
 
 TEMPLATES = [
     {
