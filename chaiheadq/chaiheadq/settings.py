@@ -17,21 +17,18 @@ import os
 BASE_DIR = Path(__file__).resolve().parent.parent
 TEMP_DIR = os.path.join(BASE_DIR, "templates")
 STATIC_DIR = os.path.join(BASE_DIR,'static')
-STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles")
-
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# Get SECRET_KEY from environment variables
-SECRET_KEY = os.environ.get("SECRET_KEY", "django-insecure-dev-key")
+SECRET_KEY = "django-insecure-#gycec**=mmri=6ya&b-h^o^q!)ve@j)igmhg*vqsouo1n_#0d"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['Vishallokhande8788.pythonanywhere.com']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -54,8 +51,6 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-    "whitenoise.middleware.WhiteNoiseMiddleware",  # add this line
-
 ]
 
 ROOT_URLCONF = "chaiheadq.urls"
@@ -140,4 +135,3 @@ LOGIN_URL = '/accounts/login/'
 
 LOGIN_REDIRECT_URL = '/tweet/'
 LOGOUT_REDIRECT_URL = '/tweet/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
