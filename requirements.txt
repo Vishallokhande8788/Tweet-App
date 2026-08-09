@@ -6,3 +6,5 @@ Django==5.2.5
 gunicorn
 dj-database-url
 psycopg2-binary
+--extra-index-url https://download.pytorch.org/whl/cpu
+torch==2.7.1+cpu
